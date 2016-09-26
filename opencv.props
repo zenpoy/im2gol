@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <OpenCV_Bin>C:\libs\opencv-3.0.0\build\install\$(PlatformTarget)\vc14\bin\</OpenCV_Bin>
+    <OpenCV_Lib>C:\libs\opencv-3.0.0\build\install\$(PlatformTarget)\vc14\lib\</OpenCV_Lib>
+    <OpenCV_Include>C:\libs\opencv-3.0.0\build\install\include\</OpenCV_Include>
+    <!--debug suffix for OpenCV dlls and libs -->
+    <DebugSuffix Condition="'$(Configuration)'=='Debug'">d</DebugSuffix>
+    <DebugSuffix Condition="'$(Configuration)'!='Debug'"></DebugSuffix>
+  </PropertyGroup>
+  <ItemGroup>
+    <!--Add required OpenCV dlls here-->
+    <Content  Include="$(OpenCV_Bin)opencv_core300$(DebugSuffix).dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_imgproc300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_imgcodecs300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_features2d300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_flann300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_ml300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_video300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+    <Content  Include="$(OpenCV_Bin)opencv_videoio300$(DebugSuffix).dll">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content >
+  </ItemGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(OpenCV_Include);$(ProjectDir);$(GeneratedFilesDir);$(IntDir);%(AdditionalIncludeDirectories);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <!--Add required OpenCV libs here-->
+      <AdditionalDependencies>opencv_video300$(DebugSuffix).lib;;opencv_videoio300$(DebugSuffix).lib;opencv_core300$(DebugSuffix).lib;opencv_imgproc300$(DebugSuffix).lib;opencv_features2d300$(DebugSuffix).lib;opencv_flann300$(DebugSuffix).lib;opencv_ml300$(DebugSuffix).lib;opencv_imgcodecs300$(DebugSuffix).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OpenCV_Lib);%(AdditionalLibraryDirectories);</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
